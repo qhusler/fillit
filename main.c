@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/22 16:41:54 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/23 18:26:53 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ int		file_reader(t_env *e, char *param)
 	ret = read(fd, e->file, 546);
 	if (ret >= 546)
 		error(1);
-	e->file[ret - 1] = '\0';
+	e->file[ret] = '\0';
 	close(fd);
-	if (((ret - 20) % 21) != 0)				//if qui sert a savoir si le nb lu est valide.
+	if (((ret - 20) % 21) != 0)
 		error(1);
 	e->nb_tet = ((ret - 20) / 21) + 1;
-	ft_putendl(e->file);
 	return (EXIT_SUCCESS);
 }
 
