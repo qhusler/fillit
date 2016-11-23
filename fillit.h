@@ -11,7 +11,12 @@ typedef struct		s_env
 	int				nb_tet;
 }					t_env;
 
-
+typedef struct		s_parse_info
+{
+	int				ndot;
+	int				mdi;
+	int				mnl;
+}					t_parse_info;
 
 void		error(int n);
 int			main_parse(t_env *env);
