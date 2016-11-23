@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 11:25:03 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/23 18:11:35 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/11/23 19:06:53 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int		basic_test(char *file)
 
 	i = -1;
 	c = 0;
+	if (file[0] == '\0')
+		return (1);
 	while (file[++i])
 		if (file[i] != '.' && file[i] != '#' && file[i] != '\n')
 			return (1);

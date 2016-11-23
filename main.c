@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/23 18:48:41 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/11/23 19:05:27 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int		file_reader(t_env *e, char *param)
 	int		fd;
 
 	ret = 0;	
-	fd = open(param, O_RDONLY);
-	if (fd < 0)
+	if ((fd = open(param, O_RDONLY)) < 0)
 		error(0);
 	ret = read(fd, e->file, 546);
 	if (ret >= 546)
