@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fillit.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/11/23 18:21:46 by aguerin           #+#    #+#             */
+/*   Updated: 2016/11/23 18:22:53 by aguerin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FILLIT_H
 # define FILLIT_H
 
@@ -18,8 +30,8 @@ typedef struct		s_parse_info
 	int				mnl;
 }					t_parse_info;
 
-void		error(int n);
-int			main_parse(t_env *env);
-int			veriftetri(t_env *env);
+void				error(int n);
+int					main_parse(t_env *env);
+int					veriftetri(t_env *env);
 
 #endif
