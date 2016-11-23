@@ -20,5 +20,6 @@ typedef struct		s_parse_info
 
 void		error(int n);
 int			main_parse(t_env *env);
+int			veriftetri(t_env *env);
 
 #endif
