@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 11:25:03 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/23 19:06:53 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/23 20:59:59 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,41 @@ int		medium_test(char *s, t_parse_info *pi, int ntet)
 	return (0);
 }
 
+int		connect_test(char *s, t_parse_info *pi, int ntet)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (s && s[i] && nb_tet)
+	{
+		i += 20;
+		pi->nb_co = 0;
+		while (j < i)
+		{
+			pi->nb_co += (s[j] == '#' && s[j + 1] == '#') ? 1 : 0;
+			pi->nb_co += (s[j] == '#' && s[j - 1] == '#') ? 1 : 0;
+			pi->nb_co += (s[j] == '#' && s[j + 5] == '#') ? 1 : 0;
+			pi->nb_co += (s[j] == '#' && s[j - 5] == '#') ? 1 : 0;
+			if (s[j] == '#')
+			{
+				printf("\nnb_co = %d\n", pi->nb_co);
+			}
+			j++;
+		}
+		printf("----------\n");
+		ft_putnbr(pi->nb_co);
+		ft_putchar(10);
+		printf("----------\n");
+		if (!(pi->nb_co >= 6))
+			return (1);
+		i++;
+		j++;
+	}
+	return (0);
+}
+
 int		main_parse(t_env *e)
 {
 	t_parse_info	pi;
@@ -75,6 +110,8 @@ int		main_parse(t_env *e)
 	if (basic_test(e->file) == 1)
 		error(1);
 	if (medium_test(e->file, &pi, e->nb_tet) == 1)
+		error(1);
+	if (connect_test(e->file, &pi) == 1)
 		error(1);
 	ft_putstrc(CGREEN, "valid\n", CEND);
 	return (EXIT_SUCCESS);
