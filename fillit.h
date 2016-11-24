@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 18:21:46 by aguerin           #+#    #+#             */
-/*   Updated: 2016/11/23 19:51:01 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/24 10:46:47 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ typedef struct		s_parse_info
 
 void				error(int n);
 int					main_parse(t_env *env);
-void				veriftetri(t_env *env);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 11:25:03 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/24 10:15:07 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/11/24 10:49:37 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,22 +83,15 @@ int		connect_test(char *s, t_parse_info *pi, int ntet)
 		{
 			pi->nb_co += (s[j] == '#' && s[j + 1] == '#') ? 1 : 0;
 			pi->nb_co += (s[j] == '#' && s[j - 1] == '#') ? 1 : 0;
-			pi->nb_co += (s[j] == '#' && s[j + 5] == '#') ? 1 : 0;
-			pi->nb_co += (s[j] == '#' && s[j - 5] == '#') ? 1 : 0;
-			if (s[j] == '#')
-			{
-				printf("\nnb_co = %d\n", pi->nb_co);
-			}
+			pi->nb_co += (s[j] == '#' && s[j + 5] == '#' && (j + 5) < i) ? 1 : 0;
+			pi->nb_co += (s[j] == '#' && s[j - 5] == '#' && (j - 5) >= (i - 20)) ? 1 : 0;
 			j++;
 		}
-		printf("----------\n");
-		ft_putnbr(pi->nb_co);
-		ft_putchar(10);
-		printf("----------\n");
-		if (!(pi->nb_co >= 6))
+		if (pi->nb_co != 6 && pi->nb_co != 8)
 			return (1);
 		i++;
 		j++;
+		ntet--;
 	}
 	return (0);
 }
@@ -113,6 +106,5 @@ int		main_parse(t_env *e)
 		error(1);
 	if (connect_test(e->file, &pi, e->nb_tet) == 1)
 		error(1);
-	ft_putstrc(CGREEN, "valid\n", CEND);
 	return (EXIT_SUCCESS);
 }

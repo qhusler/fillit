@@ -6,7 +6,7 @@
 #    By: qhusler <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/20 11:20:11 by qhusler           #+#    #+#              #
-#    Updated: 2016/11/23 14:32:12 by aguerin          ###   ########.fr        #
+#    Updated: 2016/11/24 10:47:45 by qhusler          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -I./fillit.h
 INCLUDES = fillit.h
 SRCS = main.c \
 	   error.c \
-	   parse.c \
-	   veriftetri.c
+	   parse.c 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

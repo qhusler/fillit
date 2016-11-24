@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/23 19:05:27 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/24 10:46:32 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int		main(int ac, char **av)
 	{
 		file_reader(&e, av[1]);
 		main_parse(&e);
-		veriftetri(&e);
 	}
 	return (0);
 }

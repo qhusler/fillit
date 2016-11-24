@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 10:58:34 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/21 18:36:44 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/24 10:47:14 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 void	error(int n)
 {
 	if (n == -1)
-		ft_putstrc(CRED, "usage: fillit [file]\n", CEND);
-	if (n == 0)
-		ft_putstrc(CRED, "bad file descriptor\n", CEND);
-	if (n == 1)
-		ft_putstrc(CRED, "invalid file\n", CEND);
+		ft_putendl("usage: fillit [file]");
+	if (n == 0 || n == 1)
+		ft_putendl("error");
 	exit(-1);
 }
