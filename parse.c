@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 11:25:03 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/23 20:59:59 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/24 10:15:07 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		connect_test(char *s, t_parse_info *pi, int ntet)
 
 	i = 0;
 	j = 0;
-	while (s && s[i] && nb_tet)
+	while (s && s[i] && ntet)
 	{
 		i += 20;
 		pi->nb_co = 0;
@@ -111,7 +111,7 @@ int		main_parse(t_env *e)
 		error(1);
 	if (medium_test(e->file, &pi, e->nb_tet) == 1)
 		error(1);
-	if (connect_test(e->file, &pi) == 1)
+	if (connect_test(e->file, &pi, e->nb_tet) == 1)
 		error(1);
 	ft_putstrc(CGREEN, "valid\n", CEND);
 	return (EXIT_SUCCESS);
