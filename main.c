@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/25 12:18:39 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/25 15:49:09 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ void	test_print(t_env *e)
 	i = 0;
 	while (i < e->nb_tet)
 	{
-		ft_putendl(e->tetris[i].tet);
-		ft_putnbr(e->tetris[i].id);
+		ft_putendl("....................");
+		ft_putstr(e->tetris[i].tet);
+		ft_putchar(10);
+		ft_putchar(e->tetris[i].id);
 		ft_putchar(10);
 		i++;
 	}

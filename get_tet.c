@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 16:08:42 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/25 14:47:05 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/25 15:48:31 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*get_tetriminos2(char *s, int *i)
 		*i += 5;
 		return ("..#\n###");
 	}
-	return ("lala");
+	return (get_tetriminos_z(s, i));
 }
 
 char		*get_tetriminos(char *s, int *i)
@@ -92,9 +92,11 @@ int			mgt(t_env *e)
 		if (e->file[i] == '#')
 		{
 			e->tetris[j].tet = ft_strdup(get_tetriminos(e->file, &i));
-			e->tetris[j].id = lettre++;
-//			printf("%s\n", e->tetris[j].tet);
-//			printf("%c\n", e->tetris[j].id);
+			e->tetris[j].id = lettre;
+	//		printf("%d < %d\n", j, e->nb_tet);
+	//		printf("%s\n", e->tetris[j].tet);
+	//		printf("%c\n", e->tetris[j].id);
+			lettre++;
 			j++;
 		}
 		i++;
