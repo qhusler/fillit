@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 18:21:46 by aguerin           #+#    #+#             */
-/*   Updated: 2016/11/25 14:54:50 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/25 17:09:50 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ typedef struct		s_env
 void				error(int n);
 int					main_parse(t_env *env);
 char				*get_tetriminos_z(char *s, int *i);
-int					mgt(t_env *e);
+int					init_tetris_struct(t_env *e);
 
 #endif

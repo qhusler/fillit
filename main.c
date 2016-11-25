@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/25 15:49:09 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/25 18:13:57 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		main(int ac, char **av)
 		error(-1);
 	file_reader(&e, av[1]);
 	main_parse(&e);
-	mgt(&e);
+	init_tetris_struct(&e);
 	test_print(&e);
 	return (0);
 }

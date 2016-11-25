@@ -6,7 +6,7 @@
 #    By: qhusler <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/20 11:20:11 by qhusler           #+#    #+#              #
-#    Updated: 2016/11/25 14:54:21 by qhusler          ###   ########.fr        #
+#    Updated: 2016/11/25 17:12:41 by qhusler          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = main.c \
 	   error.c \
 	   parse.c \
 	   get_tet.c \
-	   get_tet_3.c
+	   get_tet_2.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
