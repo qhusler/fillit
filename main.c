@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/24 10:46:32 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/25 12:18:39 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,29 @@ int		file_reader(t_env *e, char *param)
 	return (EXIT_SUCCESS);
 }
 
+void	test_print(t_env *e)
+{
+	int i;
+
+	i = 0;
+	while (i < e->nb_tet)
+	{
+		ft_putendl(e->tetris[i].tet);
+		ft_putnbr(e->tetris[i].id);
+		ft_putchar(10);
+		i++;
+	}
+}
+
 int		main(int ac, char **av)
 {
 	t_env		e;
 
 	if (ac != 2)
 		error(-1);
-	else
-	{
-		file_reader(&e, av[1]);
-		main_parse(&e);
-	}
+	file_reader(&e, av[1]);
+	main_parse(&e);
+	mgt(&e);
+	test_print(&e);
 	return (0);
 }
