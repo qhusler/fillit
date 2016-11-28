@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/25 18:13:57 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/28 16:30:15 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		file_reader(t_env *e, char *param)
 	int		ret;
 	int		fd;
 
-	ret = 0;	
+	ret = 0;
 	if ((fd = open(param, O_RDONLY)) < 0)
 		error(0);
 	ret = read(fd, e->file, 546);
@@ -50,6 +50,8 @@ void	test_print(t_env *e)
 int		main(int ac, char **av)
 {
 	t_env		e;
+	char		**map;
+	int			size;
 
 	if (ac != 2)
 		error(-1);
@@ -57,5 +59,9 @@ int		main(int ac, char **av)
 	main_parse(&e);
 	init_tetris_struct(&e);
 	test_print(&e);
+	size = ft_sqrt_sup(e.nb_tet * 4);
+	map = create_map(size);
+	print_map(map, size);
+	delete_map(map, size);
 	return (0);
 }
