@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 18:21:46 by aguerin           #+#    #+#             */
-/*   Updated: 2016/11/28 16:30:18 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/11/28 18:48:15 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct		s_tet
 {
 	char			*tet;
 	char			id;
-	int				x;
-	int				y;
+	int				width;
+	int				heigh;
 }					t_tet;
 
 typedef struct		s_env

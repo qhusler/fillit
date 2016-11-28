@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/28 16:30:15 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/11/28 18:49:03 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ void	test_print(t_env *e)
 		ft_putchar(10);
 		ft_putchar(e->tetris[i].id);
 		ft_putchar(10);
+		ft_putstr("width = ");
+		ft_putnbr(e->tetris[i].width);
+		ft_putchar(10);
+		ft_putstr("high = ");
+		ft_putnbr(e->tetris[i].heigh);
+		ft_putchar(10);
 		i++;
 	}
 }
@@ -55,12 +61,15 @@ int		main(int ac, char **av)
 
 	if (ac != 2)
 		error(-1);
+
 	file_reader(&e, av[1]);
 	main_parse(&e);
 	init_tetris_struct(&e);
 	test_print(&e);
+
 	size = ft_sqrt_sup(e.nb_tet * 4);
 	map = create_map(size);
+
 	print_map(map, size);
 	delete_map(map, size);
 	return (0);

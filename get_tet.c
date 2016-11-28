@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 16:08:42 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/25 18:14:23 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/28 18:48:58 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,22 @@ char	*get_tetriminos(char *s, int *i)
 	return (get_tetriminos_l(s, i));
 }
 
+void	tet_cord(t_tet *tetris)
+{
+	int i;
+
+	i = 0;
+	while (tetris->tet[i] && tetris->tet[i] != '\n')
+		i++;
+	tetris->width = i;
+	i = 0;
+	tetris->heigh = 0;
+	while (tetris->tet[i])
+		if (tetris->tet[i++] == '\n')
+			tetris->heigh++;
+	tetris->heigh++;
+}
+
 int		init_tetris_struct(t_env *e)
 {
 	int		i;
@@ -99,6 +115,7 @@ int		init_tetris_struct(t_env *e)
 		{
 			e->tetris[j].id = lettre++;
 			e->tetris[j].tet = ft_strdup(get_tetriminos(e->file, &i));
+			tet_cord(&e->tetris[j]);
 			j++;
 		}
 		i++;
