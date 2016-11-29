@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 18:21:46 by aguerin           #+#    #+#             */
-/*   Updated: 2016/11/29 14:35:30 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/29 17:20:19 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int					init_tetris_struct(t_env *e);
 
 unsigned int		ft_sqrt_sup(unsigned int nb);
 char				**create_map(unsigned int size);
+void				place_piece(char **map, t_env *e, t_tet *tet);
 void				delete_map(char **map, unsigned int size);
 void				print_map(char **map, int size);
 
