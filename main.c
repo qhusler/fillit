@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/28 18:49:03 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/29 15:04:21 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		main(int ac, char **av)
 {
 	t_env		e;
 	char		**map;
-	int			size;
+	int			i = 0;
 
 	if (ac != 2)
 		error(-1);
@@ -67,10 +67,13 @@ int		main(int ac, char **av)
 	init_tetris_struct(&e);
 	test_print(&e);
 
-	size = ft_sqrt_sup(e.nb_tet * 4);
-	map = create_map(size);
+	e.map_size = ft_sqrt_sup(e.nb_tet * 4);
+	map = create_map(e.map_size);
+	
+	place_piece(map, &e, e->tetris[i].tet);
 
-	print_map(map, size);
-	delete_map(map, size);
+
+	print_map(map, e.map_size);
+	delete_map(map, e.map_size);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 18:21:46 by aguerin           #+#    #+#             */
-/*   Updated: 2016/11/28 18:48:15 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/29 14:35:30 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct		s_env
 	char			file[546];
 	int				nb_tet;
 	t_tet			*tetris;
+	int				map_size;
 }					t_env;
 
 void				error(int n);

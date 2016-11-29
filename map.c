@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 16:13:04 by aguerin           #+#    #+#             */
-/*   Updated: 2016/11/28 16:35:08 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/11/29 15:04:19 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,28 @@ void			print_map(char **map, int size)
 	i = 0;
 	while (size > i)
 		ft_putendl(map[i++]);
+}
+
+void			place_piece(char **map, t_env *e, char *tet)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < e->map_size)
+	{
+		while (j < e->map_size)
+		{
+			if (map[i][j] == '.' || tet[0] == '.')
+			{
+				if (i + tet->width <= e->map_size && j + tet->heigh <= e->map_size)
+				{
+
+				}
+			}
+			j++;
+		}
+		i++;
+	}
 }
