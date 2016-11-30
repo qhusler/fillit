@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 16:13:04 by aguerin           #+#    #+#             */
-/*   Updated: 2016/11/30 10:18:49 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/11/30 12:23:22 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,27 +102,29 @@ int 			search_place(char **map, int i, int j, t_tet *tet, int write)
 	return (1);
 }
 
-void			place_piece(char **map, t_env *e, t_tet *tet)
+void			place_piece(char **map, t_env *e, int k)
 {
 	int i;
 	int j;
 
 	i = 0;
 	j = 0;
-	ft_putchar(tet->id);
-	ft_putchar('\n');
+	printf("SIZE %d\n", e->map_size);
 	while (i < e->map_size)
 	{
 		while (j < e->map_size)
 		{
-			if (map[i][j] == '.' || tet->tet[0] == '.')
-			{
-				if (i + tet->heigh <= e->map_size && j + tet->width <= e->map_size)
+			if (map[i][j] == '.' || e->tetris[k].tet[0] == '.')
+			{	
+				if (i + e->tetris[k].heigh <= e->map_size && j + e->tetris[k].width <= e->map_size)
 				{
-					if (search_place(map, i, j, tet, 0))
+					if (search_place(map, i, j, &e->tetris[k], 0))
 					{
-						search_place(map, i, j, tet, 1);
+						search_place(map, i, j, &e->tetris[k], 1);
 						print_map(map, e->map_size);
+						printf("\n");
+						if (k < e->nb_tet - 1)
+							place_piece(map, e, k + 1);
 						return;
 					}
 				}
@@ -131,5 +133,11 @@ void			place_piece(char **map, t_env *e, t_tet *tet)
 		}
 		i++;
 		j = 0;
+	}
+	if (i == e->map_size)
+	{
+		e->map_size += 1;
+		map = create_map(e->map_size);
+		place_piece(map, e, 0);
 	}
 }

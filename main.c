@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/29 17:37:53 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/11/30 12:23:27 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ int		main(int ac, char **av)
 {
 	t_env		e;
 	char		**map;
-	int			i = 0;
-	int			j = 0;
 	if (ac != 2)
 		error(-1);
 
@@ -69,15 +67,10 @@ int		main(int ac, char **av)
 
 	e.map_size = ft_sqrt_sup(e.nb_tet * 4);
 	map = create_map(e.map_size);
+	place_piece(map, &e, 0);
 
-	while (j < e.nb_tet - 1)
-	{
-		place_piece(map, &e, &e.tetris[i]);
-		j++;
-		i++;
-	}
-
-	print_map(map, e.map_size);
-	delete_map(map, e.map_size);
+	printf("SIZE F %d\n", e.map_size);
+//	print_map(map, e.map_size);
+//	delete_map(map, e.map_size);
 	return (0);
 }
