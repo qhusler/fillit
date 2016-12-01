@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/12/01 10:04:54 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/12/01 15:26:57 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,31 @@ int		main(int ac, char **av)
 {
 	t_env		e;
 	char		**map;
+	int			i;
+
+
 	if (ac != 2)
 		error(-1);
 
+	i = 0;
 	file_reader(&e, av[1]);
 	main_parse(&e);
 	init_tetris_struct(&e);
-	test_print(&e);
+//	test_print(&e);
 
 	e.map_size = ft_sqrt_sup(e.nb_tet * 4);
-	map = create_map(e.map_size);
-	place_piece(map, &e, 0);
-	
+	while (!e.res)
+	{
+		e.map_size += i;
+		map = create_map(e.map_size);
+		place_piece(map, &e, 0);
+		i++;	
+	}
 
-//	print_map(map, e.map_size);
+	if (e.res)
+		print_map(e.res, e.map_size);
+//	else
+//		printf("deso ma biatch\n");
 //	delete_map(map, e.map_size);
 	return (0);
 }
