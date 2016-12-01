@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/11/30 12:23:27 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/12/01 10:04:54 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int		main(int ac, char **av)
 	e.map_size = ft_sqrt_sup(e.nb_tet * 4);
 	map = create_map(e.map_size);
 	place_piece(map, &e, 0);
+	
 
-	printf("SIZE F %d\n", e.map_size);
 //	print_map(map, e.map_size);
 //	delete_map(map, e.map_size);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 16:13:04 by aguerin           #+#    #+#             */
-/*   Updated: 2016/11/30 12:23:22 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/12/01 10:15:58 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,15 +101,38 @@ int 			search_place(char **map, int i, int j, t_tet *tet, int write)
 	}
 	return (1);
 }
+char			**map_copy(char **map, int	size)
+{
+	char	**new;
+	int		i;
+	int		j;
 
+	if (!(new = create_map(size)))
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (i < size)
+	{
+		while (j < size)
+		{
+			new[i][j] = map[i][j];
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+	return (new);
+}
 void			place_piece(char **map, t_env *e, int k)
 {
 	int i;
 	int j;
+	char	**new;
+	int ok;
 
+	ok = 0;
 	i = 0;
 	j = 0;
-	printf("SIZE %d\n", e->map_size);
 	while (i < e->map_size)
 	{
 		while (j < e->map_size)
@@ -120,12 +143,17 @@ void			place_piece(char **map, t_env *e, int k)
 				{
 					if (search_place(map, i, j, &e->tetris[k], 0))
 					{
-						search_place(map, i, j, &e->tetris[k], 1);
-						print_map(map, e->map_size);
-						printf("\n");
+						new = map_copy(map, e->map_size);
+						search_place(new, i, j, &e->tetris[k], 1);
 						if (k < e->nb_tet - 1)
-							place_piece(map, e, k + 1);
-						return;
+							place_piece(new, e, k + 1);
+						else
+						{
+							print_map(new, e->map_size);
+							printf("\n");
+							ok = 1;
+							return;
+						}
 					}
 				}
 			}
@@ -134,10 +162,11 @@ void			place_piece(char **map, t_env *e, int k)
 		i++;
 		j = 0;
 	}
-	if (i == e->map_size)
+	/*if (i == e->map_size && j == 0 && !ok)
 	{
+		printf("map trop petite %d %d %d\n", e->map_size, i, j);
 		e->map_size += 1;
 		map = create_map(e->map_size);
 		place_piece(map, e, 0);
-	}
+	}*/
 }
