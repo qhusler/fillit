@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 16:13:04 by aguerin           #+#    #+#             */
-/*   Updated: 2016/12/01 15:31:16 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/12/01 16:56:07 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void			print_map(char **map, int size)
 		ft_putendl(map[i++]);
 }
 
-int 			search_place(char **map, int i, int j, t_tet *tet, int write)
+int				search_place(char **map, int i, int j, t_tet *tet, int write)
 {
 	int	k;
 	int ii;
@@ -101,7 +101,8 @@ int 			search_place(char **map, int i, int j, t_tet *tet, int write)
 	}
 	return (1);
 }
-char			**map_copy(char **map,  int	size)
+
+char			**map_copy(char **map, int size)
 {
 	char	**new;
 	int		i;
@@ -123,125 +124,36 @@ char			**map_copy(char **map,  int	size)
 	}
 	return (new);
 }
-void			map_copy2(char **map, char **new, int	size)
-{
-	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
-	while (i < size)
-	{
-		while (j < size)
-		{
-			map[i][j] = new[i][j];
-			j++;
-		}
-		i++;
-		j = 0;
-	}
-}
-void				ft_swap(char ***new, char ***map)
-{
-	char **s;
-
-	s = NULL;
-	s = *map;
-	*map = *new;
-	*new = s;
-}
-
-void				place_piece(char **map, t_env *e, int k)
+void			place_piece(char **map, t_env *e, int k)
 {
 	int		i;
 	int		j;
 	char	**new;
 
-	i = 0;
-	j = 0;
-
-	while (i < e->map_size)
+	i = -1;
+	j = -1;
+	while (++i < e->map_size)
 	{
-		while (j < e->map_size)
+		while (++j < e->map_size)
 		{
 			if (map[i][j] == '.' || e->tetris[k].tet[0] == '.')
 			{
-				if (i + e->tetris[k].heigh <= e->map_size && j + e->tetris[k].width <= e->map_size)
+				if (i + e->tetris[k].heigh <= e->map_size
+					&& j + e->tetris[k].width <= e->map_size)
 				{
 					if (search_place(map, i, j, &e->tetris[k], 0))
 					{
-						new = map_copy(map,  e->map_size);
+						new = map_copy(map, e->map_size);
 						search_place(new, i, j, &e->tetris[k], 1);
 						if (k < e->nb_tet - 1)
-						{
 							place_piece(new, e, k + 1);
-						}
-						else
-						{
-							if (!(e->res))
-							{
-								e->res = map_copy(new, e->map_size);
-							}
-						}
+						else if (!(e->res))
+							e->res = map_copy(new, e->map_size);
 					}
 				}
 			}
-			j++;
 		}
-		i++;
 		j = 0;
 	}
-	/*	if (i == e->map_size && j == 0 && ok)
-		{
-		printf("map trop petite %d %d %d\n", e->map_size, i, j);
-		e->map_size += 1;
-		map = create_map(e->map_size);
-		place_piece(map, e, 0);
-		}
-		*/}
-
-/*void				place_piece(char **map, t_env *e, int k)
-  {
-  int i;
-  int j;
-  char	**new;
-
-  i = 0;
-  j = 0;
-  while (i < e->map_size)
-  {
-  while (j < e->map_size)
-  {
-  if (map[i][j] == '.' || e->tetris[k].tet[0] == '.')
-  {
-  if (i + e->tetris[k].heigh <= e->map_size && j + e->tetris[k].width <= e->map_size)
-  {
-  if (search_place(map, i, j, &e->tetris[k], 0))
-  {
-  new = map_copy(map, e->map_size);
-  search_place(new, i, j, &e->tetris[k], 1);
-  if (k < e->nb_tet - 1)
-  {
-  place_piece(new, e, k + 1);
-  }
-  else
-  {
-  ft_swap(&map, &new);
-  printf("SA MARCHE");
-  }
-  }
-  }
-  }
-  j++;
-  }
-  i++;
-  j = 0;
-  }
-  *//*	if (i == e->map_size && j == 0 && ok)
-		{
-		printf("map trop petite %d %d %d\n", e->map_size, i, j);
-		e->map_size += 1;
-		map = create_map(e->map_size);
-		place_piece(map, e, 0);
-		}
-		*///}
+}

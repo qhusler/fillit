@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/12/01 15:26:57 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/12/01 16:41:53 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,57 +31,25 @@ int		file_reader(t_env *e, char *param)
 	return (EXIT_SUCCESS);
 }
 
-void	test_print(t_env *e)
-{
-	int i;
-
-	i = 0;
-	while (i < e->nb_tet)
-	{
-		ft_putendl("....................");
-		ft_putstr(e->tetris[i].tet);
-		ft_putchar(10);
-		ft_putchar(e->tetris[i].id);
-		ft_putchar(10);
-		ft_putstr("width = ");
-		ft_putnbr(e->tetris[i].width);
-		ft_putchar(10);
-		ft_putstr("high = ");
-		ft_putnbr(e->tetris[i].heigh);
-		ft_putchar(10);
-		i++;
-	}
-}
-
 int		main(int ac, char **av)
 {
 	t_env		e;
 	char		**map;
 	int			i;
 
-
 	if (ac != 2)
 		error(-1);
-
 	i = 0;
 	file_reader(&e, av[1]);
 	main_parse(&e);
 	init_tetris_struct(&e);
-//	test_print(&e);
-
 	e.map_size = ft_sqrt_sup(e.nb_tet * 4);
 	while (!e.res)
 	{
-		e.map_size += i;
+		e.map_size += i++;
 		map = create_map(e.map_size);
 		place_piece(map, &e, 0);
-		i++;	
 	}
-
-	if (e.res)
-		print_map(e.res, e.map_size);
-//	else
-//		printf("deso ma biatch\n");
-//	delete_map(map, e.map_size);
+	print_map(e.res, e.map_size);
 	return (0);
 }
