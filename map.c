@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 16:13:04 by aguerin           #+#    #+#             */
-/*   Updated: 2016/12/01 16:56:07 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/12/02 10:03:56 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,10 +150,11 @@ void			place_piece(char **map, t_env *e, int k)
 							place_piece(new, e, k + 1);
 						else if (!(e->res))
 							e->res = map_copy(new, e->map_size);
+					
 					}
 				}
 			}
 		}
-		j = 0;
+		j = -1;
 	}
 }
