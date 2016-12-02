@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 16:13:04 by aguerin           #+#    #+#             */
-/*   Updated: 2016/12/02 10:03:56 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/12/02 13:35:28 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,20 @@ char			**create_map(unsigned int size)
 
 void			delete_map(char **map, unsigned int size)
 {
-	unsigned int	i;
+	unsigned int i;
 
 	i = 0;
-	while (size > 0)
+	if (map)
 	{
-		free(map[size - 1]);
-		map[size] = NULL;
-		size--;
+		while (i < size)
+		{
+			free(map[i]);
+			map[i] = NULL;
+			i++;
+		}
+		free(map);
+		map = NULL;
 	}
-	free(map);
-	map = NULL;
 }
 
 void			print_map(char **map, int size)
@@ -102,14 +105,13 @@ int				search_place(char **map, int i, int j, t_tet *tet, int write)
 	return (1);
 }
 
-char			**map_copy(char **map, int size)
+void		map_copy(char **map, char **new, int size)
 {
-	char	**new;
 	int		i;
 	int		j;
 
-	if (!(new = create_map(size)))
-		return (NULL);
+	/*if (!(new = create_map(size)))
+	  return (NULL);*/
 	i = 0;
 	j = 0;
 	while (i < size)
@@ -122,14 +124,14 @@ char			**map_copy(char **map, int size)
 		i++;
 		j = 0;
 	}
-	return (new);
+	//	return (new);
 }
 
 void			place_piece(char **map, t_env *e, int k)
 {
 	int		i;
 	int		j;
-	char	**new;
+	char	**new = NULL;
 
 	i = -1;
 	j = -1;
@@ -140,21 +142,27 @@ void			place_piece(char **map, t_env *e, int k)
 			if (map[i][j] == '.' || e->tetris[k].tet[0] == '.')
 			{
 				if (i + e->tetris[k].heigh <= e->map_size
-					&& j + e->tetris[k].width <= e->map_size)
+						&& j + e->tetris[k].width <= e->map_size)
 				{
 					if (search_place(map, i, j, &e->tetris[k], 0))
 					{
-						new = map_copy(map, e->map_size);
+					//	delete_map(new, e->map_size);
+						new = create_map(e->map_size);
+						map_copy(map, new, e->map_size);
 						search_place(new, i, j, &e->tetris[k], 1);
 						if (k < e->nb_tet - 1)
 							place_piece(new, e, k + 1);
 						else if (!(e->res))
-							e->res = map_copy(new, e->map_size);
-					
+						{
+							e->res = create_map(e->map_size);
+							map_copy(new, e->res, e->map_size);
+							//delete_map(new, e->map_size);
+						}
 					}
 				}
 			}
 		}
 		j = -1;
 	}
+	//delete_map(new, e->map_size);
 }
