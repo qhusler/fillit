@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/12/02 13:35:19 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/12/02 14:38:09 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,22 @@ int		main(int ac, char **av)
 	file_reader(&e, av[1]);
 	main_parse(&e);
 	init_tetris_struct(&e);
-	delete_map(map, e.map_size);
-	map = create_map(5);
-	delete_map(map, 5);
+	/*map = create_map(181);
+	map = delete_map(map, 181);
 	if (!map)
-		printf("free ok\n");
+		printf("%p, free ok\n", map);
 	else
-		printf("free pas ok\n");
+		printf("%p, free pas ok\n", map);
 	//delete_map(map, 5);
-/*	e.map_size = ft_sqrt_sup(e.nb_tet * 4);
-	while (!e.res)
+*/	e.map_size = ft_sqrt_sup(e.nb_tet * 4);
+  	while (!e.res)
 	{
 		e.map_size += i++;
 		map = create_map(e.map_size);
 		place_piece(map, &e, 0);
 	}
 	print_map(e.res, e.map_size);
+	map = delete_map(e.res, e.map_size);
 //	delete_map(map, e.map_size);
 //	delete_map(e.res, e.map_size);*/
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 16:13:04 by aguerin           #+#    #+#             */
-/*   Updated: 2016/12/02 13:35:28 by aguerin          ###   ########.fr       */
+/*   Updated: 2016/12/02 14:44:59 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,20 @@ char			**create_map(unsigned int size)
 	return (map);
 }
 
-void			delete_map(char **map, unsigned int size)
+char		**delete_map(char **map, unsigned int size)
 {
 	unsigned int i;
 
-	i = 0;
+	i = -1;
 	if (map)
 	{
-		while (i < size)
-		{
-			free(map[i]);
-			map[i] = NULL;
-			i++;
-		}
+		while (++i < size)
+			ft_strdel(&map[i]);
+	//	ft_memdel((void**)map);
 		free(map);
 		map = NULL;
 	}
+	return (NULL);
 }
 
 void			print_map(char **map, int size)
@@ -81,11 +79,9 @@ void			print_map(char **map, int size)
 int				search_place(char **map, int i, int j, t_tet *tet, int write)
 {
 	int	k;
-	int ii;
 	int jj;
 
 	k = 0;
-	ii = i;
 	jj = j;
 	while (tet->tet[k])
 	{
@@ -135,9 +131,9 @@ void			place_piece(char **map, t_env *e, int k)
 
 	i = -1;
 	j = -1;
-	while (++i < e->map_size)
+	while (++i < e->map_size /*&& !e->res*/)
 	{
-		while (++j < e->map_size)
+		while (++j < e->map_size /*&& !e->res*/)
 		{
 			if (map[i][j] == '.' || e->tetris[k].tet[0] == '.')
 			{
@@ -147,7 +143,8 @@ void			place_piece(char **map, t_env *e, int k)
 					if (search_place(map, i, j, &e->tetris[k], 0))
 					{
 					//	delete_map(new, e->map_size);
-						new = create_map(e->map_size);
+						if (!new)
+							new = create_map(e->map_size);
 						map_copy(map, new, e->map_size);
 						search_place(new, i, j, &e->tetris[k], 1);
 						if (k < e->nb_tet - 1)
