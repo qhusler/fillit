@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 10:35:13 by qhusler           #+#    #+#             */
-/*   Updated: 2016/12/02 18:53:11 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/12/04 14:56:50 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void	test_print(t_env *e)
 	}
 }
 
-
-
 int		main(int ac, char **av)
 {
 	t_env		e;
@@ -68,24 +66,26 @@ int		main(int ac, char **av)
 	file_reader(&e, av[1]);
 	main_parse(&e);
 	init_tetris_struct(&e);
-	e.map_size = ft_sqrt_sup(e.nb_tet * 4);
+	test_print(&e);
+	/*map = create_map(181);
+	  map = delete_map(map, 181);
+	  if (!map)
+	  printf("%p, free ok\n", map);
+	  else
+	  printf("%p, free pas ok\n", map);
+	//delete_map(map, 5);
+	*/	e.map_size = ft_sqrt_sup(e.nb_tet * 4);
 	while (!e.res)
 	{
 		e.map_size += i++;
 		map = create_map(e.map_size);
 		place_piece(map, &e, 0);
-		i = e.map_size;
-		while (i-- > 0)
-			free(map[i]);
-		free(map);
 	}
 	print_map(e.res, e.map_size);
-	delete_map(&e.res, e.map_size);
+	map = delete_map(map, e.map_size);
+	e.res = delete_map(e.res, e.map_size);
 	//	delete_map(map, e.map_size);
 	//	delete_map(e.res, e.map_size);*/
-	while (1)
-		;
+	while (1);
 	return (0);
 }
-
-//printf("%p, free pas ok\n", map);

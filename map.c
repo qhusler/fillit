@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 16:13:04 by aguerin           #+#    #+#             */
-/*   Updated: 2016/12/02 18:45:20 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/12/04 14:51:16 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,20 @@ char			**create_map(unsigned int size)
 	return (map);
 }
 
-void		delete_map(char ***map, unsigned int size)
+char			**delete_map(char **map, unsigned int size)
 {
 	unsigned int i;
-	char **ptr;
 
 	i = -1;
-	ptr = *map;
-	if (ptr)
+	if (map)
 	{
 		while (++i < size)
-			ft_strdel(&ptr[i]);
+			ft_strdel(&map[i]);
 	//	ft_memdel((void**)map);
-		free(ptr);
-		ptr = NULL;
+		free(map);
+		map = NULL;
 	}
-	//return (NULL);
+	return (NULL);
 }
 
 void			print_map(char **map, int size)
@@ -159,6 +157,7 @@ void			place_piece(char **map, t_env *e, int k)
 							map_copy(new, e->res, e->map_size);
 							//delete_map(new, e->map_size);
 						}
+						new = delete_map(new, e->map_size);
 					}
 				}
 			}
