@@ -6,7 +6,7 @@
 #    By: qhusler <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/20 11:20:11 by qhusler           #+#    #+#              #
-#    Updated: 2016/12/06 12:02:44 by qhusler          ###   ########.fr        #
+#    Updated: 2016/12/06 13:14:14 by aguerin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS = main.c \
 	   parse.c \
 	   get_tet.c \
 	   init_struct.c \
-	   map.c
+	   map.c \
+	   piece.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

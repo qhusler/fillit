@@ -6,13 +6,13 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 11:25:03 by qhusler           #+#    #+#             */
-/*   Updated: 2016/12/06 11:56:30 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/12/06 13:00:19 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		file_reader(t_env *e, char *param)
+int				file_reader(t_env *e, char *param)
 {
 	int		ret;
 	int		fd;

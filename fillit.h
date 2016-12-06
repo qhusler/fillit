@@ -6,7 +6,7 @@
 /*   By: aguerin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 18:21:46 by aguerin           #+#    #+#             */
-/*   Updated: 2016/12/06 12:16:25 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/12/06 12:59:50 by aguerin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char				*get_tetriminos(char *s, int *i);
 
 char				**create_map(unsigned int size);
 void				place_piece(char **map, t_env *e, int k);
+void				map_copy(char **map, char **new, int size);
 char				**delete_map(char **map, unsigned int size);
-
 
 #endif
