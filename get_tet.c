@@ -6,7 +6,7 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 16:08:42 by qhusler           #+#    #+#             */
-/*   Updated: 2016/12/04 13:28:45 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/12/06 12:02:21 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,46 +130,4 @@ char	*get_tetriminos(char *s, int *i)
 		return ("###\n.#.");
 	}
 	return (get_tetriminos_c(s, i));
-}
-
-void	tet_cord(t_tet *tetris)
-{
-	int i;
-
-	i = 0;
-	while (tetris->tet[i] && tetris->tet[i] != '\n')
-		i++;
-	tetris->width = i;
-	i = 0;
-	tetris->heigh = 0;
-	while (tetris->tet[i])
-		if (tetris->tet[i++] == '\n')
-			tetris->heigh++;
-	tetris->heigh++;
-}
-
-int		init_tetris_struct(t_env *e)
-{
-	int		i;
-	int		j;
-	char	lettre;
-
-	i = 0;
-	j = 0;
-	lettre = 'A';
-	if (!(e->tetris = (t_tet*)malloc(sizeof(t_tet) * e->nb_tet)))
-		return (1);
-	while (e->file[i])
-	{
-		if (e->file[i] == '#')
-		{
-			e->tetris[j].id = lettre++;
-			e->tetris[j].tet = ft_strdup(get_tetriminos(e->file, &i));
-			tet_cord(&e->tetris[j]);
-			j++;
-		}
-		i++;
-	}
-	e->res = NULL;
-	return (0);
 }

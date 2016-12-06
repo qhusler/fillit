@@ -6,11 +6,30 @@
 /*   By: qhusler <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 11:25:03 by qhusler           #+#    #+#             */
-/*   Updated: 2016/12/02 18:53:08 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/12/06 11:56:30 by qhusler          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+int		file_reader(t_env *e, char *param)
+{
+	int		ret;
+	int		fd;
+
+	ret = 0;
+	if ((fd = open(param, O_RDONLY)) < 0)
+		error(0);
+	ret = read(fd, e->file, 546);
+	if (ret >= 546)
+		error(1);
+	e->file[ret] = '\0';
+	close(fd);
+	if (((ret - 20) % 21) != 0)
+		error(1);
+	e->nb_tet = ((ret - 20) / 21) + 1;
+	return (EXIT_SUCCESS);
+}
 
 static int		basic_test(char *file)
 {

@@ -6,7 +6,7 @@
 #    By: qhusler <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/20 11:20:11 by qhusler           #+#    #+#              #
-#    Updated: 2016/12/01 14:03:07 by qhusler          ###   ########.fr        #
+#    Updated: 2016/12/06 12:02:44 by qhusler          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = main.c \
 	   error.c \
 	   parse.c \
 	   get_tet.c \
-	   get_tet_2.c \
+	   init_struct.c \
 	   map.c
 OBJS = $(SRCS:.c=.o)
 
